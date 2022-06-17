@@ -1,3 +1,4 @@
+
 'clears screen
 CLS
 
@@ -33,8 +34,6 @@ PRINT: PRINT
 PRINT TAB(7); "Employee"; TAB(28); "Hours"; TAB(49); "Gross"; TAB(70); "Tax"
 PRINT TAB(9); "Name"; TAB(28); "Worked"; TAB(50); "Pay"; TAB(70); "Due"
 PRINT TAB(7); "--------"; TAB(28); "------"; TAB(49); "-----"; TAB(70); "---"
-
-
 
 RETURN
 
@@ -103,8 +102,13 @@ RETURN
 'subroutine for printing outputs
 OUTPUTS:
 
-PRINT USING "! & ### hrs $$#####.## $$#####.##"; TAB(7); FNAME$; SNAME$; TAB(28); E.HRS!; TAB(44); E.PAY!; TAB(63); E.TAX!
-
+IF E.FLAG% = 1 THEN
+    PRINT USING "! & ### hrs & RECORD CONTAINS INVALID DATA!"; TAB(7); FNAME$; SNAME$; TAB(28); E.HRS!; TAB(44); A$
+ELSEIF E.FLAG% = 2 THEN
+    PRINT USING "! & & HASN'T WORKED THIS WEEK!"; TAB(7); FNAME$; SNAME$; TAB(28); A$
+ELSE
+    PRINT USING "! & ### hrs $$#####.## $$#####.##"; TAB(7); FNAME$; SNAME$; TAB(28); E.HRS!; TAB(44); E.PAY!; TAB(63); E.TAX!
+END IF
 
 RETURN
 
@@ -112,8 +116,19 @@ RETURN
 ACC.PRINT:
 
 PRINT STRING$(80, 45)
-PRINT "Total Accumulated Gross Pay = "; TAB(49); ACC.PAY!
+PRINT USING "Total Accumulated Gross Pay =  "; TAB(49); ACC.PAY!
 
 RETURN
 
 DATA "Bob","Ross",20,20
+DATA "Bob","Ross",20,20
+DATA "Bob","Ross",20,20
+DATA "Bob","Ross",20,20
+DATA "Bob","Ross",20,20
+DATA "Bob","Ross",20,20
+DATA "Bob","Ross",20,20
+DATA "Bob","Ross",20,20
+DATA "Bob","Ross",20,20
+DATA "Bob","Ross",20,20
+DATA "Bob","Ross",20,20
+
