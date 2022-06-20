@@ -1,4 +1,3 @@
-
 'clears screen
 CLS
 
@@ -28,7 +27,7 @@ END
 HEADINGS:
 
 PRINT TAB(20); "On the Road Again Car & Caravan Rental Co."
-PRINT TAB(31); "Peekly Payroll Report"
+PRINT TAB(31); "Weekly Payroll Report"
 PRINT TAB(20); "------------------------------------------"
 PRINT: PRINT
 PRINT TAB(7); "Employee"; TAB(28); "Hours"; TAB(49); "Gross"; TAB(70); "Tax"
