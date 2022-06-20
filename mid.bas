@@ -8,7 +8,7 @@ T.RATE! = 0.3
 GOSUB HEADINGS
 
 'counted loop for mulitple sets of data
-FOR LCV% = 0 TO 10
+FOR LCV% = 1 TO 10
 
     GOSUB RESETS
     GOSUB READ.INPUT
