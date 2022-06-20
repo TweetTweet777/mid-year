@@ -33,7 +33,7 @@ PRINT TAB(20); "------------------------------------------"
 PRINT: PRINT
 PRINT TAB(7); "Employee"; TAB(28); "Hours"; TAB(49); "Gross"; TAB(70); "Tax"
 PRINT TAB(9); "Name"; TAB(28); "Worked"; TAB(50); "Pay"; TAB(70); "Due"
-PRINT TAB(7); "--------"; TAB(28); "------"; TAB(49); "-----"; TAB(70); "---"
+PRINT TAB(7); "--------"; TAB(28); "-------"; TAB(49); "-----"; TAB(70); "---"
 
 RETURN
 
@@ -88,9 +88,11 @@ IF E.FLAG% <= 0 THEN
         E.PAY! = (40 * E.RATE!) + (E.RATE! * E.OV! * (E.HRS! - 40))
 
     ELSE
+
         E.PAY! = E.HRS! * E.RATE!
 
     END IF
+
     E.TAX! = E.PAY! * T.RATE%
 
 END IF
@@ -116,10 +118,11 @@ RETURN
 ACC.PRINT:
 
 PRINT STRING$(80, 45)
-PRINT USING "Total Accumulated Gross Pay =  "; TAB(49); ACC.PAY!
+PRINT USING "Total Accumulated Gross Pay = & $$#####.## "; TAB(7); A$; TAB(44); ACC.PAY!
 
 RETURN
 
+'data
 DATA "Bob","Ross",20,20
 DATA "Bob","Ross",20,20
 DATA "Bob","Ross",20,20
@@ -131,4 +134,3 @@ DATA "Bob","Ross",20,20
 DATA "Bob","Ross",20,20
 DATA "Bob","Ross",20,20
 DATA "Bob","Ross",20,20
-
