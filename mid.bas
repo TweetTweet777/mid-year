@@ -2,7 +2,7 @@
 CLS
 
 'defines constants
-T.RATE% = 0.3
+T.RATE! = 0.3
 
 'prints headings before loop
 GOSUB HEADINGS
@@ -74,7 +74,7 @@ RETURN
 'subroutine for calculating gross pay, tax due and accumulated gross pay
 CALCULATIONS:
 
-IF E.FLAG% <= 0 THEN
+IF E.FLAG% = 0 THEN
 
     IF E.HRS! > 40 THEN
 
@@ -92,10 +92,11 @@ IF E.FLAG% <= 0 THEN
 
     END IF
 
-    E.TAX! = E.PAY! * T.RATE%
+
 
 END IF
 
+E.TAX! = E.PAY! * T.RATE!
 ACC.PAY! = ACC.PAY! + E.PAY!
 
 RETURN
@@ -108,7 +109,7 @@ IF E.FLAG% = 1 THEN
 ELSEIF E.FLAG% = 2 THEN
     PRINT USING "! & & HASN'T WORKED THIS WEEK!"; TAB(7); FNAME$; SNAME$; TAB(28); A$
 ELSE
-    PRINT USING "! & ### hrs $$#####.## $$#####.##"; TAB(7); FNAME$; SNAME$; TAB(28); E.HRS!; TAB(44); E.PAY!; TAB(63); E.TAX!
+    PRINT USING "! & ### hrs $$##,###.## $$##,###.##"; TAB(7); FNAME$; SNAME$; TAB(28); E.HRS!; TAB(43); E.PAY!; TAB(62); E.TAX!
 END IF
 
 RETURN
@@ -117,7 +118,7 @@ RETURN
 ACC.PRINT:
 
 PRINT STRING$(80, 45)
-PRINT USING "Total Accumulated Gross Pay = & $$#####.## "; TAB(7); A$; TAB(44); ACC.PAY!
+PRINT USING "Total Accumulated Gross Pay = & $$##,###.## "; TAB(7); A$; TAB(43); ACC.PAY!
 
 RETURN
 
