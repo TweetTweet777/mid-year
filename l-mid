@@ -2,13 +2,13 @@
 CLS
 
 'defines constants
-T.RATE% = 0.3
+T.RATE! = 0.3
 
 'prints headings before loop
 GOSUB HEADINGS
 
 'counted loop for mulitple sets of data
-FOR LCV% = 0 TO 10
+FOR LCV% = 1 TO 10
 
     GOSUB RESETS
     GOSUB READ.INPUT
@@ -74,7 +74,7 @@ RETURN
 'subroutine for calculating gross pay, tax due and accumulated gross pay
 CALCULATIONS:
 
-IF E.FLAG% <= 0 THEN
+IF E.FLAG% = 0 THEN
 
     IF E.HRS! > 40 THEN
 
@@ -92,10 +92,11 @@ IF E.FLAG% <= 0 THEN
 
     END IF
 
-    E.TAX! = E.PAY! * T.RATE%
+
 
 END IF
 
+E.TAX! = E.PAY! * T.RATE!
 ACC.PAY! = ACC.PAY! + E.PAY!
 
 RETURN
