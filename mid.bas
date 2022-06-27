@@ -1,3 +1,47 @@
+'FILENAME: mid.bas
+'PROGRAMMER: Ly, Max
+'DATE: 27/06/2022
+'VERSION: Final
+
+'PURPOSE:
+'The purpose of this program is to calculate and produce a weekly payroll report of a company's 10 employees.
+
+'INPUT:
+'This program will require the user to enter the hours each employee worked each week.
+'The program is required to also read the employees first name, surname, pay rate and number of years employed.
+
+'PROCESSING:
+'The program must calculate the gross pay of each employee which includes any overtime pay (which an employee is paid more for,
+'depending on how long they worked overtime and how long they have been employed in the company for) and the amount of tax to be paid.
+'The tax rate is to be assigned as a constant. The accumulated gross pay for all employees is to be calculated as well.
+'The program will check whether the values inputted are valid and will assign an error code if an invalid value is entered so that when
+'each employee’s information is printed, it will notify the user if the data is invalid and their pay will not be added to the accumulated total.
+'The program will also check whether the employee has worked no hours, which a variable will be assigned so that the report can notify the user if an employee has worked no hours.
+
+'OUTPUT:
+'This program will output a report with a main title, a subtitle and column headings (on 2 lines).
+'The employee’s first name initial, the full surname, the hours worked, the gross pay and the amount of tax to be paid are to be printed on one line under each column heading.
+'Underneath all that, the program will output the accumulated gross pay of all employees.
+'If the employee has not worked during the week, the report prints a message stating that no hours have been worked (in place of the gross pay and tax amount.)
+'and if the employee has invalid data prints a message stating that “record contains invalid data”.
+
+'DATA DICTIONARY
+
+'Data Name       Data Type   Represents
+'T.RATE%         Integer     Current tax rate stored as a constant
+'LCV%            Integer     Loop control variable
+'E.FLAG%         Integer     ERROR Flag
+'FNAME$          String      First name of an Employee
+'SNAME$          String      Surname of an Employee
+'E.RATE!         Float       Pay rate/wage of a given an employee
+'E.YEARS!        Float       Amount of years a given employee has been employed with the company
+'E.HRS!          Float       The number of hours a given employee has worked over a period of a week
+'E.PAY!          Float       The gross pay of a given employee
+'E.TAX!          Float       The tax value/amount due for a given employee
+'ACC.PAY!        Float       The accumulated total gross pay of all employees
+
+'------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 'clears screen
 CLS
 
@@ -26,13 +70,13 @@ END
 'subroutine for printing headings before loop
 HEADINGS:
 
-PRINT TAB(20); "On the Road Again Car & Caravan Rental Co."
-PRINT TAB(31); "Weekly Payroll Report"
-PRINT TAB(20); "------------------------------------------"
-PRINT: PRINT
-PRINT TAB(7); "Employee"; TAB(28); "Hours"; TAB(49); "Gross"; TAB(70); "Tax"
-PRINT TAB(9); "Name"; TAB(28); "Worked"; TAB(50); "Pay"; TAB(70); "Due"
-PRINT TAB(7); "--------"; TAB(28); "-------"; TAB(49); "-----"; TAB(70); "---"
+LPRINT TAB(20); "On the Road Again Car & Caravan Rental Co."
+LPRINT TAB(31); "Weekly Payroll Report"
+LPRINT TAB(20); "------------------------------------------"
+LPRINT: LPRINT
+LPRINT TAB(7); "Employee"; TAB(28); "Hours"; TAB(49); "Gross"; TAB(70); "Tax"
+LPRINT TAB(9); "Name"; TAB(28); "Worked"; TAB(50); "Pay"; TAB(70); "Due"
+LPRINT TAB(7); "--------"; TAB(28); "-------"; TAB(49); "-----"; TAB(70); "---"
 
 RETURN
 
@@ -105,11 +149,11 @@ RETURN
 OUTPUTS:
 
 IF E.FLAG% = 1 THEN
-    PRINT USING "! & ### hrs & RECORD CONTAINS INVALID DATA!"; TAB(7); FNAME$; SNAME$; TAB(28); E.HRS!; TAB(44); A$
+    LPRINT USING "! & ### hrs & RECORD CONTAINS INVALID DATA!"; TAB(7); FNAME$; SNAME$; TAB(28); E.HRS!; TAB(44); A$
 ELSEIF E.FLAG% = 2 THEN
-    PRINT USING "! & & HASN'T WORKED THIS WEEK!"; TAB(7); FNAME$; SNAME$; TAB(28); A$
+    LPRINT USING "! & & HASN'T WORKED THIS WEEK!"; TAB(7); FNAME$; SNAME$; TAB(28); A$
 ELSE
-    PRINT USING "! & ### hrs $$##,###.## $$##,###.##"; TAB(7); FNAME$; SNAME$; TAB(28); E.HRS!; TAB(43); E.PAY!; TAB(62); E.TAX!
+    LPRINT USING "! & ### hrs $$##,###.## $$##,###.##"; TAB(7); FNAME$; SNAME$; TAB(28); E.HRS!; TAB(43); E.PAY!; TAB(62); E.TAX!
 END IF
 
 RETURN
@@ -117,8 +161,8 @@ RETURN
 'subroutine for printing accumulated gross pay
 ACC.PRINT:
 
-PRINT STRING$(80, 45)
-PRINT USING "Total Accumulated Gross Pay = & $$##,###.## "; TAB(7); A$; TAB(43); ACC.PAY!
+LPRINT STRING$(80, 45)
+LPRINT USING "Total Accumulated Gross Pay = & $$##,###.## "; TAB(7); A$; TAB(43); ACC.PAY!
 
 RETURN
 
