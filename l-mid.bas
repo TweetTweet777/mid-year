@@ -54,7 +54,6 @@ GOSUB HEADINGS
 'counted loop for mulitple sets of data
 FOR LCV% = 1 TO 10
 
-    GOSUB RESETS
     GOSUB READ.INPUT
     GOSUB VALIDATION
     GOSUB CALCULATIONS
@@ -89,19 +88,6 @@ HEADINGS:
     LPRINT TAB(7); "Employee"; TAB(28); "Hours"; TAB(49); "Gross"; TAB(70); "Tax"
     LPRINT TAB(9); "Name"; TAB(28); "Worked"; TAB(50); "Pay"; TAB(70); "Due"
     LPRINT TAB(7); "--------"; TAB(28); "-------"; TAB(49); "-----"; TAB(70); "---"
-
-RETURN
-
-'subroutine for resetting read values after each loop
-RESETS:
-
-    E.FLAG% = 0
-    E.RATE! = 0
-    E.YEARS! = 0
-    E.PAY! = 0
-    E.TAX! = 0
-    FNAME$ = ""
-    SNAME$ = ""
 
 RETURN
 
@@ -160,13 +146,18 @@ RETURN
 
 'subroutine for printing outputs
 OUTPUTS:
+    LPRINT USING "! & "; TAB(7); FNAME$; SNAME$;
 
     IF E.FLAG% = 1 THEN
-        LPRINT USING "! & ### hrs & RECORD CONTAINS INVALID DATA!"; TAB(7); FNAME$; SNAME$; TAB(28); E.HRS!; TAB(44); A$
+
+        LPRINT USING "### hrs "; TAB(28); E.HRS!;
+        LPRINT TAB(44); "RECORD CONTAINS INVALID DATA!"
+
     ELSEIF E.FLAG% = 2 THEN
-        LPRINT USING "! & & HASN'T WORKED THIS WEEK!"; TAB(7); FNAME$; SNAME$; TAB(28); A$
+
+        LPRINT TAB(28); "HASN'T WORKED THIS WEEK!"
     ELSE
-        LPRINT USING "! & ### hrs $$##,###.## $$##,###.##"; TAB(7); FNAME$; SNAME$; TAB(28); E.HRS!; TAB(43); E.PAY!; TAB(62); E.TAX!
+        LPRINT USING "### hrs $$##,###.## $$##,###.##"; TAB(28); E.HRS!; TAB(43); E.PAY!; TAB(62); E.TAX!
     END IF
 
 RETURN
@@ -175,6 +166,7 @@ RETURN
 ACC.PRINT:
 
     LPRINT STRING$(80, 45)
-    LPRINT USING "Total Accumulated Gross Pay = & $$##,###.## "; TAB(7); A$; TAB(43); ACC.PAY!
+    LPRINT TAB(7); "Total Accumulated Gross Pay = ";
+    LPRINT USING "$$##,###.## "; TAB(43); ACC.PAY!
 
 RETURN
